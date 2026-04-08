@@ -1,45 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
 
-:root {
-    --neon-blue: #00f3ff;
-    --neon-purple: #bc13fe;
-    --dark-bg: #0b0e14;
-}
-
-body {
-    background-color: var(--dark-bg);
-    color: #ffffff;
-    font-family: 'Roboto', sans-serif;
-}
-
-h1, h2, h3, .font-orbitron {
-    font-family: 'Orbitron', sans-serif;
-}
-
-.neon-border {
-    border: 2px solid var(--neon-blue);
-    box-shadow: 0 0 10px var(--neon-blue);
-}
-
-.neon-text-blue {
-    color: var(--neon-blue);
-    text-shadow: 0 0 5px var(--neon-blue);
-}
-
-.neon-text-purple {
-    color: var(--neon-purple);
-    text-shadow: 0 0 5px var(--neon-purple);
-}
-
-.gradient-bg {
-    background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
-}
-
-.image-placeholder {
-    background-color: #1a1f2b;
-    border: 1px dashed #4b5563;
+.photo {
     display: flex;
-    align-items: center;
     justify-content: center;
-    color: #4b5563;
+    margin-top: 20px;
+    max-width: 400px;
 }
+
