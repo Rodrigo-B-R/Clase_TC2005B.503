@@ -8,74 +8,218 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="../stylesheet/style.css">
 </head>
+
+
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./profile.html">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./tags.html">Tags</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown link
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-      </ul>
+
+
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="./tags.html">Tags</a>
+            </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown link
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+            </li>
+        </ul>
+        </div>
     </div>
-  </div>
-</nav>
-    <div class="container ">
-        <div class="row flex justify-content-center">
-            <div class="col-lg-4 col-md-6 col-sm-12"></div>
-            <div class="col-lg-4 col-md-6 col-sm-12 align-self-center">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </nav>
+    
 
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12"></div>
+    <div>
+        <input type="email" name="" id="email" placeholder="Email">
+        <input type="text" placeholder="Nombre y apellido" id="nombre">
+        <button id="login_button" a> Login </button>
 
 
-        </div>
-        <div class="row ">
-            <div class="col-lg-4 col-md-6 col-sm-12"></div>
+        
+    </div>
 
-            <div class="col-lg-4 col-md-6 col-sm-12 align-self-center">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control">
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12"></div>
+    <div>
+      <p id="mensaje-error" style="color: red; display: none;"></p>
+    </div>
+    
 
-        </div>
-
-        <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-12"></div>
-
-            <div class="col-lg-4 col-md-6 col-sm-12 align-self-center text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12"></div>
+    <div>
+        <input type="radio" name="opcion" id="invitado">
+        <label for="inivitado"> Invitado</label>
 
     </div>
-</form>
+
+    <div>
+        <input type="radio" name="opcion" id="ponente">
+        <label for="ponente"> Ponente</label>
+
+    </div>
+
+    <div>
+        <input type="radio" name="opcion" id="socio">
+        <label for="socio"> Socio </label>
+
+    </div>
+
+    <div hidden id="seleccion_ubicacion">
+        <label for="select_pais"> Selecciona un pais </label>
+        <select name="select_pais" id="select_pais" > Pais
+
+            <option value="0"> Selecciona un pais </option>
+        </select>
+        <select name="select_region" id="select_region">
+            <option value="0"> Selecciona una region </option>
+        </select>
+        
+    </div>
+    
+    <div>
+        <input type="checkbox" name="" id="terminos">
+        <label for="terminos"> Acepto terminos y condiciones </label>
+
+        <input type="checkbox" name="emails" id="emails">
+        <label for="emails">Quiero recibir emails </label>
+    </div>
+
+
+    <button disabled="disabled" id="boton-enviar"> Enviar </button>
+
+
+    <script>
+
+        const rdInvitado = document.getElementById("invitado");
+        const rdPonente = document.getElementById("ponente");
+        const rdSocio = document.getElementById("socio");
+
+
+        const botonEnviar= document.getElementById("boton-enviar")
+        const checkTerminos =document.getElementById("terminos")
+        const checkEmail = document.getElementById("emails")
+        const inputEmail = document.getElementById("email")
+        const inputNombre = document.getElementById("nombre")
+        const selPaises = document.getElementById("select_pais")
+        const selRegiones = document.getElementById("select_region")
+        const loginButton = document.getElementById("login_button")
+        const mensajeError = document.getElementById("mensaje-error")
+        const locationDiv = document.getElementById("seleccion_ubicacion")
+
+        const expectedEmail = "email@email.com"
+        const expectedNombre = "nombre"
+
+
+        const showLocation = () => {
+          locationDiv.hidden = false;
+        }
+
+        rdPonente.addEventListener("change", showLocation)
+        rdSocio.addEventListener("change", showLocation)
+        rdInvitado.addEventListener("change", showLocation)
+
+        const login = () => {
+
+            const email_val = inputEmail.value;
+            const nombre_val = inputNombre.value;
+
+            if( email_val === expectedEmail && nombre_val === expectedNombre){
+                mensajeError.style.display = "none";
+                window.location.replace("./profile.html")
+                
+
+            }
+            else{
+              mensajeError.textContent = "Usuario o contraseña no válidos.";
+              mensajeError.style.display = "block";
+            }
+
+            
+            
+
+        }
+
+        loginButton.addEventListener("click", login)
+
+
+
+        let paisesData = []
+
+
+
+        const activarEnviar = () => {
+            botonEnviar.disabled = !(checkEmail.checked && checkTerminos.checked)
+            
+
+        }
+
+        const enviar = () => {
+
+            email_val = inputEmail.value
+            nombre_val = inputNombre.value
+
+            console.log(email_val)
+            console.log(nombre_val)
+
+            
+
+        }
+
+        const loadJson = async () => {
+
+            const res = await fetch("./data.json")
+            paisesData = await res.json()
+
+            paisesData.forEach( (pais) => {
+                const option = document.createElement("option")
+                option.value = pais.countryShortCode
+                option.textContent = pais.countryName
+                selPaises.appendChild(option)
+            });
+        }
+
+        const cargarRegiones = () => {
+            const codigoPais = selPaises.value
+            selRegiones.innerHTML = '<option value="0">Selecciona una region</option>'
+
+            if (codigoPais === "0") return
+
+            const pais = paisesData.find(p => p.countryShortCode === codigoPais)
+            if (!pais) return
+
+            pais.regions.forEach(region => {
+                const option = document.createElement("option")
+                option.value = region.shortCode
+                option.textContent = region.name
+                selRegiones.appendChild(option)
+            })
+        }
+
+        loadJson()
+
+        selPaises.addEventListener("change", cargarRegiones)
+        checkEmail.addEventListener("click", activarEnviar)
+        checkTerminos.addEventListener("change", activarEnviar)
+
+        botonEnviar.addEventListener("click", enviar)
+    </script>
+
+    <script src="../Scripts/script.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+
     
 </body>
 </html>
