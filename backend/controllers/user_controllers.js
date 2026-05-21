@@ -1,4 +1,5 @@
 import { query } from '../utils/db.js'
+import { hashPassword } from '../utils/hash.js'
 
 export const getUsers = async (req, res) => {
     try {
@@ -25,7 +26,7 @@ export const createUser = async (req, res) => {
         const { name, email, password } = req.body
         const result = await query(
             'INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *',
-            [name, email, password]
+            [name, email, hashPassword(password)]
         )
         res.status(201).json(result.rows[0])
     } catch (err) {
