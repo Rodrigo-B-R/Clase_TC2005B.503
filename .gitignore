@@ -1,5 +1,7 @@
 GEMINI.md
 frontend/node_modules
 backend/node_modules
+construccion-software/node_modules
+
 .env
 **/.env
