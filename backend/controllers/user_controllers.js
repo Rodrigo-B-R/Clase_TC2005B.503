@@ -13,7 +13,7 @@ export const getUsers = async (req, res) => {
 export const getUser = async (req, res) => {
     try {
         const { id } = req.params
-        const result = await query('SELECT * FROM users WHERE id = $1', [id])
+        const result = await query('SELECT id, name, email, age FROM users WHERE id = $1', [id])
         if (result.rows.length === 0) return res.status(404).json({ message: 'User not found' })
         res.json(result.rows[0])
     } catch (err) {
@@ -37,10 +37,10 @@ export const createUser = async (req, res) => {
 export const updateUser = async (req, res) => {
     try {
         const { id } = req.params
-        const { name, email } = req.body
+        const { name, email, age } = req.body
         const result = await query(
-            'UPDATE users SET name = $1, email = $2 WHERE id = $3 RETURNING *',
-            [name, email, id]
+            'UPDATE users SET name = $1, email = $2, age = $3 WHERE id = $4 RETURNING *',
+            [name, email, age, id]
         )
         if (result.rows.length === 0) return res.status(404).json({ message: 'User not found' })
         res.json(result.rows[0])

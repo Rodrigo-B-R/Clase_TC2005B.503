@@ -99,13 +99,9 @@
     <button disabled="disabled" id="boton-enviar"> Enviar </button>
 
 
-    <script>
+    <script >
 
         const rdInvitado = document.getElementById("invitado");
-        const rdPonente = document.getElementById("ponente");
-        const rdSocio = document.getElementById("socio");
-
-
         const botonEnviar= document.getElementById("boton-enviar")
         const checkTerminos =document.getElementById("terminos")
         const checkEmail = document.getElementById("emails")
@@ -114,81 +110,83 @@
         const selPaises = document.getElementById("select_pais")
         const selRegiones = document.getElementById("select_region")
         const loginButton = document.getElementById("login_button")
-        const mensajeError = document.getElementById("mensaje-error")
-        const locationDiv = document.getElementById("seleccion_ubicacion")
-
-        const expectedEmail = "email@email.com"
-        const expectedNombre = "nombre"
 
 
-        const showLocation = () => {
-          locationDiv.hidden = false;
-        }
+        const login = async () => {
 
-        rdPonente.addEventListener("change", showLocation)
-        rdSocio.addEventListener("change", showLocation)
-        rdInvitado.addEventListener("change", showLocation)
+            const email = inputEmail.value;
+            const password = inputNombre.value;
 
-        const login = () => {
-
-            const email_val = inputEmail.value;
-            const nombre_val = inputNombre.value;
-
-            if( email_val === expectedEmail && nombre_val === expectedNombre){
-                mensajeError.style.display = "none";
-                window.location.replace("./profile.html")
-                
-
-            }
-            else{
-              mensajeError.textContent = "Usuario o contraseña no válidos.";
-              mensajeError.style.display = "block";
+            if (!email || !password) {
+                alert("Por favor ingresa tu correo y contraseña.")
+                return
             }
 
-            
-            
+            try {
+                const res = await fetch('http://localhost:5000/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                })
 
-        }
+                const data = await res.json()
 
+                if (data.login) {
+                    window.location.href = `./game/index.html?id=${data.id}`
+                } else {
+                    alert("Correo o contraseña incorrectos.")
+                }
+            } catch (err) {
+                alert("No se pudo conectar con el servidor.")
+                console.error(err)
+            }
+
+
+
+
+
+
+
+
+                    
+                    
+
+                }
         loginButton.addEventListener("click", login)
-
 
 
         let paisesData = []
 
 
-
         const activarEnviar = () => {
-            botonEnviar.disabled = !(checkEmail.checked && checkTerminos.checked)
-            
+                    botonEnviar.disabled = !(checkEmail.checked && checkTerminos.checked)
+                    
 
-        }
-
+                }
         const enviar = () => {
 
-            email_val = inputEmail.value
-            nombre_val = inputNombre.value
+                    email_val = inputEmail.value
+                    nombre_val = inputNombre.value
 
-            console.log(email_val)
-            console.log(nombre_val)
+                    console.log(email_val)
+                    console.log(nombre_val)
 
-            
+                    
 
-        }
+                }
 
-        const loadJson = async () => {
+                const loadJson = async () => {
 
-            const res = await fetch("./data.json")
-            paisesData = await res.json()
+        const res = await fetch("./data.json")
+        aisesData = await res.json()
 
-            paisesData.forEach( (pais) => {
-                const option = document.createElement("option")
-                option.value = pais.countryShortCode
-                option.textContent = pais.countryName
-                selPaises.appendChild(option)
-            });
-        }
-
+        paisesData.forEach( (pais) => {
+            const option = document.createElement("option")
+            option.value = pais.countryShortCode
+            option.textContent = pais.countryName
+            selPaises.appendChild(option)
+                    });
+                }
         const cargarRegiones = () => {
             const codigoPais = selPaises.value
             selRegiones.innerHTML = '<option value="0">Selecciona una region</option>'
@@ -203,8 +201,8 @@
                 option.value = region.shortCode
                 option.textContent = region.name
                 selRegiones.appendChild(option)
-            })
-        }
+                    })
+                }
 
         loadJson()
 
@@ -215,7 +213,6 @@
         botonEnviar.addEventListener("click", enviar)
     </script>
 
-    <script src="../Scripts/script.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 

@@ -7,17 +7,43 @@ const inputNombre = document.getElementById("nombre")
 const selPaises = document.getElementById("select_pais")
 const selRegiones = document.getElementById("select_region")
 const loginButton = document.getElementById("login_button")
-const expectedEmail = "e"
-const expectedNombre = "nombre"
-const login = () => {
 
-const email_val = inputEmail.value;
-const nombre_val = inputNombre.value;
 
-if( email_val === expectedEmail && nombre_val === expectedNombre){
-                window.location.replace("./profile.html")
+const login = async () => {
 
-            }
+    const email = inputEmail.value;
+    const password = inputNombre.value;
+
+    if (!email || !password) {
+        alert("Por favor ingresa tu correo y contraseña.")
+        return
+    }
+
+    try {
+        const res = await fetch('http://localhost:5000/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        })
+
+        const data = await res.json()
+
+        if (data.login) {
+            window.location.href = `./profile.html?id=${data.id}`
+        } else {
+            alert("Correo o contraseña incorrectos.")
+        }
+    } catch (err) {
+        alert("No se pudo conectar con el servidor.")
+        console.error(err)
+    }
+
+
+
+
+
+
+
 
             
             
